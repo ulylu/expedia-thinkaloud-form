@@ -6,8 +6,10 @@
   <title>Expedia Think Aloud 参与者问卷</title>
   <style>
     :root { --max: 860px; --fg:#111; --muted:#666; --bd:#ddd; --bg:#fafafa; }
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",Arial,sans-serif;
-         background:var(--bg); color:var(--fg); margin:0;}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+      background:var(--bg); color:var(--fg); margin:0;
+    }
     header{background:#fff;border-bottom:1px solid var(--bd);padding:22px 16px;}
     main{max-width:var(--max);margin:0 auto;padding:16px 16px 42px;}
     h1{margin:0 0 6px;font-size:22px;}
@@ -15,13 +17,52 @@
     section{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:16px;margin:14px 0;}
     h2{margin:0 0 10px;font-size:18px;}
     h3{margin:14px 0 8px;font-size:16px;}
+
+    /* Keep normal labels for questions, but card-options use label.opt */
     label{display:block;margin:10px 0 6px;font-size:14px;}
-    input[type="text"], textarea{width:100%;box-sizing:border-box;border:1px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:14px;background:#fff;}
+
+    input[type="text"], textarea{
+      width:100%;
+      box-sizing:border-box;
+      border:1px solid var(--bd);
+      border-radius:10px;
+      padding:10px 12px;
+      font-size:14px;
+      background:#fff;
+    }
     textarea{min-height:110px;resize:vertical;}
-    .opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--bd);border-radius:10px;margin:8px 0;background:#fff;}
-    .opt input{margin-top:2px;}
+
+    /* Clickable option cards */
+    label.opt{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 12px;
+      border:1px solid var(--bd);
+      border-radius:10px;
+      margin:8px 0;
+      background:#fff;
+      cursor:pointer;
+      user-select:none;
+    }
+    label.opt:hover{ border-color:#bbb; }
+    label.opt input{ margin-top:2px; }
+    /* Selected highlight (modern browsers). Even without :has, it's still fully clickable. */
+    label.opt:has(input:checked){
+      border-color:#111;
+      box-shadow: 0 0 0 1px #111 inset;
+    }
+
     .hint{color:var(--muted);font-size:13px;margin-top:6px;}
-    button{border:1px solid var(--bd);background:#111;color:#fff;border-radius:12px;padding:10px 14px;font-size:14px;cursor:pointer;}
+    button{
+      border:1px solid var(--bd);
+      background:#111;
+      color:#fff;
+      border-radius:12px;
+      padding:10px 14px;
+      font-size:14px;
+      cursor:pointer;
+    }
     .small{font-size:12px;color:var(--muted);}
     .hr{height:1px;background:var(--bd);margin:14px 0;}
   </style>
@@ -54,8 +95,8 @@
     <form name="expedia-ta-q2" method="POST" action="/success.html"
           data-netlify="true" netlify-honeypot="bot-field">
 
+      <!-- Important for Netlify detection -->
       <input type="hidden" name="form-name" value="expedia-ta-q2" />
-
 
       <!-- honeypot field -->
       <p style="display:none;">
@@ -74,67 +115,67 @@
       <h3>Part A：任务完成情况</h3>
 
       <label>1. 你觉得自己是否成功完成任务？</label>
-      <div class="opt"><input type="radio" name="a1_success" value="非常成功" required><div>非常成功</div></div>
-      <div class="opt"><input type="radio" name="a1_success" value="基本成功"><div>基本成功</div></div>
-      <div class="opt"><input type="radio" name="a1_success" value="勉强完成"><div>勉强完成</div></div>
-      <div class="opt"><input type="radio" name="a1_success" value="没有完成"><div>没有完成</div></div>
+      <label class="opt"><input type="radio" name="a1_success" value="非常成功" required><span>非常成功</span></label>
+      <label class="opt"><input type="radio" name="a1_success" value="基本成功"><span>基本成功</span></label>
+      <label class="opt"><input type="radio" name="a1_success" value="勉强完成"><span>勉强完成</span></label>
+      <label class="opt"><input type="radio" name="a1_success" value="没有完成"><span>没有完成</span></label>
 
       <label>2. 你觉得最花时间/精力的部分是：</label>
-      <div class="opt"><input type="radio" name="a2_effort" value="输入搜索条件" required><div>输入搜索条件</div></div>
-      <div class="opt"><input type="radio" name="a2_effort" value="使用筛选条件"><div>使用筛选条件</div></div>
-      <div class="opt"><input type="radio" name="a2_effort" value="对比不同酒店"><div>对比不同酒店</div></div>
-      <div class="opt"><input type="radio" name="a2_effort" value="查找价格相关信息"><div>查找价格相关信息</div></div>
-      <div class="opt"><input type="radio" name="a2_effort" value="其他"><div>其他（请在下方补充）</div></div>
+      <label class="opt"><input type="radio" name="a2_effort" value="输入搜索条件" required><span>输入搜索条件</span></label>
+      <label class="opt"><input type="radio" name="a2_effort" value="使用筛选条件"><span>使用筛选条件</span></label>
+      <label class="opt"><input type="radio" name="a2_effort" value="对比不同酒店"><span>对比不同酒店</span></label>
+      <label class="opt"><input type="radio" name="a2_effort" value="查找价格相关信息"><span>查找价格相关信息</span></label>
+      <label class="opt"><input type="radio" name="a2_effort" value="其他"><span>其他（请在下方补充）</span></label>
       <label class="small">其他（如选择“其他”请写）</label>
       <input type="text" name="a2_effort_other" placeholder="可留空" />
 
       <label>3. 如果第一次用这个 App，学会完成任务的难度：</label>
-      <div class="opt"><input type="radio" name="a3_learn" value="很容易" required><div>很容易</div></div>
-      <div class="opt"><input type="radio" name="a3_learn" value="还可以"><div>还可以</div></div>
-      <div class="opt"><input type="radio" name="a3_learn" value="有点难"><div>有点难</div></div>
-      <div class="opt"><input type="radio" name="a3_learn" value="很难"><div>很难</div></div>
+      <label class="opt"><input type="radio" name="a3_learn" value="很容易" required><span>很容易</span></label>
+      <label class="opt"><input type="radio" name="a3_learn" value="还可以"><span>还可以</span></label>
+      <label class="opt"><input type="radio" name="a3_learn" value="有点难"><span>有点难</span></label>
+      <label class="opt"><input type="radio" name="a3_learn" value="很难"><span>很难</span></label>
 
       <div class="hr"></div>
 
       <h3>Part B：界面信息与视觉注意力</h3>
 
       <label>4. 列表页里你第一眼最容易注意到的是（可多选）：</label>
-      <div class="opt"><input type="checkbox" name="b4_attention" value="酒店图片"><div>酒店图片</div></div>
-      <div class="opt"><input type="checkbox" name="b4_attention" value="酒店名称"><div>酒店名称</div></div>
-      <div class="opt"><input type="checkbox" name="b4_attention" value="用户评分"><div>用户评分</div></div>
-      <div class="opt"><input type="checkbox" name="b4_attention" value="折扣或原价"><div>折扣或原价</div></div>
-      <div class="opt"><input type="checkbox" name="b4_attention" value="每晚价格"><div>每晚价格</div></div>
-      <div class="opt"><input type="checkbox" name="b4_attention" value="最终总价（含税费）"><div>最终总价（含税费）</div></div>
+      <label class="opt"><input type="checkbox" name="b4_attention" value="酒店图片"><span>酒店图片</span></label>
+      <label class="opt"><input type="checkbox" name="b4_attention" value="酒店名称"><span>酒店名称</span></label>
+      <label class="opt"><input type="checkbox" name="b4_attention" value="用户评分"><span>用户评分</span></label>
+      <label class="opt"><input type="checkbox" name="b4_attention" value="折扣或原价"><span>折扣或原价</span></label>
+      <label class="opt"><input type="checkbox" name="b4_attention" value="每晚价格"><span>每晚价格</span></label>
+      <label class="opt"><input type="checkbox" name="b4_attention" value="最终总价（含税费）"><span>最终总价（含税费）</span></label>
 
       <label>5. 你是否需要刻意停下来/仔细看，才能确认“最终总价”？</label>
-      <div class="opt"><input type="radio" name="b5_total" value="是" required><div>是</div></div>
-      <div class="opt"><input type="radio" name="b5_total" value="否"><div>否</div></div>
+      <label class="opt"><input type="radio" name="b5_total" value="是" required><span>是</span></label>
+      <label class="opt"><input type="radio" name="b5_total" value="否"><span>否</span></label>
 
       <label>6. 选项很多时，你的整体感受：</label>
-      <div class="opt"><input type="radio" name="b6_many" value="很容易快速扫一眼并对比" required><div>很容易快速扫一眼并对比</div></div>
-      <div class="opt"><input type="radio" name="b6_many" value="需要慢慢一个个看"><div>需要慢慢一个个看</div></div>
-      <div class="opt"><input type="radio" name="b6_many" value="信息有点多，容易眼花"><div>信息有点多，容易眼花</div></div>
+      <label class="opt"><input type="radio" name="b6_many" value="很容易快速扫一眼并对比" required><span>很容易快速扫一眼并对比</span></label>
+      <label class="opt"><input type="radio" name="b6_many" value="需要慢慢一个个看"><span>需要慢慢一个个看</span></label>
+      <label class="opt"><input type="radio" name="b6_many" value="信息有点多，容易眼花"><span>信息有点多，容易眼花</span></label>
 
       <label>7. 找价格信息时是否会被其他信息分散注意力？</label>
-      <div class="opt"><input type="radio" name="b7_distract" value="经常" required><div>经常</div></div>
-      <div class="opt"><input type="radio" name="b7_distract" value="偶尔"><div>偶尔</div></div>
-      <div class="opt"><input type="radio" name="b7_distract" value="几乎不会"><div>几乎不会</div></div>
+      <label class="opt"><input type="radio" name="b7_distract" value="经常" required><span>经常</span></label>
+      <label class="opt"><input type="radio" name="b7_distract" value="偶尔"><span>偶尔</span></label>
+      <label class="opt"><input type="radio" name="b7_distract" value="几乎不会"><span>几乎不会</span></label>
 
       <div class="hr"></div>
 
       <h3>Part C：决策与信息获取</h3>
 
       <label>8. 决定最终选择前，你是否点进多个酒店详情页？</label>
-      <div class="opt"><input type="radio" name="c8_details" value="是，很多次" required><div>是，很多次</div></div>
-      <div class="opt"><input type="radio" name="c8_details" value="是，少数几次"><div>是，少数几次</div></div>
-      <div class="opt"><input type="radio" name="c8_details" value="几乎没有"><div>几乎没有</div></div>
+      <label class="opt"><input type="radio" name="c8_details" value="是，很多次" required><span>是，很多次</span></label>
+      <label class="opt"><input type="radio" name="c8_details" value="是，少数几次"><span>是，少数几次</span></label>
+      <label class="opt"><input type="radio" name="c8_details" value="几乎没有"><span>几乎没有</span></label>
 
       <label>9. 你希望列表页就能看到、但必须点进详情页才能确认的信息（可多选）：</label>
-      <div class="opt"><input type="checkbox" name="c9_need" value="最终总价"><div>最终总价</div></div>
-      <div class="opt"><input type="checkbox" name="c9_need" value="位置或交通信息"><div>位置或交通信息</div></div>
-      <div class="opt"><input type="checkbox" name="c9_need" value="是否含早餐"><div>是否含早餐</div></div>
-      <div class="opt"><input type="checkbox" name="c9_need" value="取消或退款政策"><div>取消或退款政策</div></div>
-      <div class="opt"><input type="checkbox" name="c9_need" value="其他"><div>其他（请在下方补充）</div></div>
+      <label class="opt"><input type="checkbox" name="c9_need" value="最终总价"><span>最终总价</span></label>
+      <label class="opt"><input type="checkbox" name="c9_need" value="位置或交通信息"><span>位置或交通信息</span></label>
+      <label class="opt"><input type="checkbox" name="c9_need" value="是否含早餐"><span>是否含早餐</span></label>
+      <label class="opt"><input type="checkbox" name="c9_need" value="取消或退款政策"><span>取消或退款政策</span></label>
+      <label class="opt"><input type="checkbox" name="c9_need" value="其他"><span>其他（请在下方补充）</span></label>
       <label class="small">其他（如选择“其他”请写）</label>
       <input type="text" name="c9_other" placeholder="可留空" />
 
