@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Expedia Think Aloud 参与者问卷</title>
+  <style>
+    :root { --max: 860px; --fg:#111; --muted:#666; --bd:#ddd; --bg:#fafafa; }
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+         background:var(--bg); color:var(--fg); margin:0;}
+    header{background:#fff;border-bottom:1px solid var(--bd);padding:22px 16px;}
+    main{max-width:var(--max);margin:0 auto;padding:16px 16px 42px;}
+    h1{margin:0 0 6px;font-size:22px;}
+    .sub{color:var(--muted);font-size:14px;line-height:1.55;}
+    section{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:16px;margin:14px 0;}
+    h2{margin:0 0 10px;font-size:18px;}
+    h3{margin:14px 0 8px;font-size:16px;}
+    label{display:block;margin:10px 0 6px;font-size:14px;}
+    input[type="text"], textarea{width:100%;box-sizing:border-box;border:1px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:14px;background:#fff;}
+    textarea{min-height:110px;resize:vertical;}
+    .opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--bd);border-radius:10px;margin:8px 0;background:#fff;}
+    .opt input{margin-top:2px;}
+    .hint{color:var(--muted);font-size:13px;margin-top:6px;}
+    button{border:1px solid var(--bd);background:#111;color:#fff;border-radius:12px;padding:10px 14px;font-size:14px;cursor:pointer;}
+    .small{font-size:12px;color:var(--muted);}
+    .hr{height:1px;background:var(--bd);margin:14px 0;}
+  </style>
+</head>
+<body>
+<header>
+  <div style="max-width:860px;margin:0 auto;">
+    <h1>Expedia App 可用性研究：参与者流程与问卷</h1>
+    <div class="sub">
+      请先在手机上完成任务（Think Aloud：边操作边说出想法），然后回到本页面填写问卷。<br/>
+      不需要真实付款或下单。没有正确或错误答案，我们关注界面是否好用。
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>一、操作任务（请先完成）</h2>
+    <div class="sub">
+      <b>任务目标：</b>在 Expedia App 中搜索 <b>Niagara Falls, Ontario</b>，<b>2 位旅客</b>、<b>1 间房</b>、<b>连续 2 晚</b>。<br/>
+      在不实际付款的前提下，找到一间你认为“性价比最高”的酒店。当你觉得「如果真的订，我大概率会选这家」时即可停止操作。<br/>
+      <span class="hint">Think Aloud：请持续说出你看到什么、在找什么、为什么点这里、是否困惑等。</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>二、填写问卷（提交后无法自动显示给其他人）</h2>
+
+    <!-- Netlify Forms: must be detected at deploy time -->
+    <form name="expedia-ta-q2" method="POST" action="/success"
+          data-netlify="true" netlify-honeypot="bot-field">
+
+      <!-- honeypot field -->
+      <p style="display:none;">
+        <label>不要填写这个字段：<input name="bot-field" /></label>
+      </p>
+
+      <h3>参与者信息（可选）</h3>
+      <label>参与者编号（例如 P1 / P2）</label>
+      <input type="text" name="participant_id" placeholder="例如：P1" />
+
+      <label>使用设备（可选，例如 iPhone 13 / Android）</label>
+      <input type="text" name="device" placeholder="例如：iPhone 13" />
+
+      <div class="hr"></div>
+
+      <h3>Part A：任务完成情况</h3>
+
+      <label>1. 你觉得自己是否成功完成任务？</label>
+      <div class="opt"><input type="radio" name="a1_success" value="非常成功" required><div>非常成功</div></div>
+      <div class="opt"><input type="radio" name="a1_success" value="基本成功"><div>基本成功</div></div>
+      <div class="opt"><input type="radio" name="a1_success" value="勉强完成"><div>勉强完成</div></div>
+      <div class="opt"><input type="radio" name="a1_success" value="没有完成"><div>没有完成</div></div>
+
+      <label>2. 你觉得最花时间/精力的部分是：</label>
+      <div class="opt"><input type="radio" name="a2_effort" value="输入搜索条件" required><div>输入搜索条件</div></div>
+      <div class="opt"><input type="radio" name="a2_effort" value="使用筛选条件"><div>使用筛选条件</div></div>
+      <div class="opt"><input type="radio" name="a2_effort" value="对比不同酒店"><div>对比不同酒店</div></div>
+      <div class="opt"><input type="radio" name="a2_effort" value="查找价格相关信息"><div>查找价格相关信息</div></div>
+      <div class="opt"><input type="radio" name="a2_effort" value="其他"><div>其他（请在下方补充）</div></div>
+      <label class="small">其他（如选择“其他”请写）</label>
+      <input type="text" name="a2_effort_other" placeholder="可留空" />
+
+      <label>3. 如果第一次用这个 App，学会完成任务的难度：</label>
+      <div class="opt"><input type="radio" name="a3_learn" value="很容易" required><div>很容易</div></div>
+      <div class="opt"><input type="radio" name="a3_learn" value="还可以"><div>还可以</div></div>
+      <div class="opt"><input type="radio" name="a3_learn" value="有点难"><div>有点难</div></div>
+      <div class="opt"><input type="radio" name="a3_learn" value="很难"><div>很难</div></div>
+
+      <div class="hr"></div>
+
+      <h3>Part B：界面信息与视觉注意力</h3>
+
+      <label>4. 列表页里你第一眼最容易注意到的是（可多选）：</label>
+      <div class="opt"><input type="checkbox" name="b4_attention" value="酒店图片"><div>酒店图片</div></div>
+      <div class="opt"><input type="checkbox" name="b4_attention" value="酒店名称"><div>酒店名称</div></div>
+      <div class="opt"><input type="checkbox" name="b4_attention" value="用户评分"><div>用户评分</div></div>
+      <div class="opt"><input type="checkbox" name="b4_attention" value="折扣或原价"><div>折扣或原价</div></div>
+      <div class="opt"><input type="checkbox" name="b4_attention" value="每晚价格"><div>每晚价格</div></div>
+      <div class="opt"><input type="checkbox" name="b4_attention" value="最终总价（含税费）"><div>最终总价（含税费）</div></div>
+
+      <label>5. 你是否需要刻意停下来/仔细看，才能确认“最终总价”？</label>
+      <div class="opt"><input type="radio" name="b5_total" value="是" required><div>是</div></div>
+      <div class="opt"><input type="radio" name="b5_total" value="否"><div>否</div></div>
+
+      <label>6. 选项很多时，你的整体感受：</label>
+      <div class="opt"><input type="radio" name="b6_many" value="很容易快速扫一眼并对比" required><div>很容易快速扫一眼并对比</div></div>
+      <div class="opt"><input type="radio" name="b6_many" value="需要慢慢一个个看"><div>需要慢慢一个个看</div></div>
+      <div class="opt"><input type="radio" name="b6_many" value="信息有点多，容易眼花"><div>信息有点多，容易眼花</div></div>
+
+      <label>7. 找价格信息时是否会被其他信息分散注意力？</label>
+      <div class="opt"><input type="radio" name="b7_distract" value="经常" required><div>经常</div></div>
+      <div class="opt"><input type="radio" name="b7_distract" value="偶尔"><div>偶尔</div></div>
+      <div class="opt"><input type="radio" name="b7_distract" value="几乎不会"><div>几乎不会</div></div>
+
+      <div class="hr"></div>
+
+      <h3>Part C：决策与信息获取</h3>
+
+      <label>8. 决定最终选择前，你是否点进多个酒店详情页？</label>
+      <div class="opt"><input type="radio" name="c8_details" value="是，很多次" required><div>是，很多次</div></div>
+      <div class="opt"><input type="radio" name="c8_details" value="是，少数几次"><div>是，少数几次</div></div>
+      <div class="opt"><input type="radio" name="c8_details" value="几乎没有"><div>几乎没有</div></div>
+
+      <label>9. 你希望列表页就能看到、但必须点进详情页才能确认的信息（可多选）：</label>
+      <div class="opt"><input type="checkbox" name="c9_need" value="最终总价"><div>最终总价</div></div>
+      <div class="opt"><input type="checkbox" name="c9_need" value="位置或交通信息"><div>位置或交通信息</div></div>
+      <div class="opt"><input type="checkbox" name="c9_need" value="是否含早餐"><div>是否含早餐</div></div>
+      <div class="opt"><input type="checkbox" name="c9_need" value="取消或退款政策"><div>取消或退款政策</div></div>
+      <div class="opt"><input type="checkbox" name="c9_need" value="其他"><div>其他（请在下方补充）</div></div>
+      <label class="small">其他（如选择“其他”请写）</label>
+      <input type="text" name="c9_other" placeholder="可留空" />
+
+      <div class="hr"></div>
+
+      <h3>Part D：总体感受（简答）</h3>
+
+      <label>10. 有没有哪一刻你感到犹豫、不确定或需要反复确认信息？请描述当时你在做什么、在找什么。</label>
+      <textarea name="d10_comment" required placeholder="请尽量具体，例如：我在列表页找总价，但总是先看到每晚价格，所以点进详情确认……"></textarea>
+
+      <div style="margin-top:14px;">
+        <button type="submit">提交问卷</button>
+      </div>
+
+      <p class="small" style="margin-top:10px;">
+        提交后会跳转到成功页面。如果跳转失败，请截图并联系发给你链接的人。
+      </p>
+    </form>
+  </section>
+</main>
+</body>
+</html>
